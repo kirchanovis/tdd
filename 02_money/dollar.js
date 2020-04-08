@@ -2,7 +2,7 @@ const Money = require('./money')
 
 class Dollar extends Money {
     constructor(amount) {
-        super(amount);
+        super(amount, 'USD');
     }
 }
 
