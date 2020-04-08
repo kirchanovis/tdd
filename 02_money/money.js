@@ -1,15 +1,15 @@
-class Franc {
+class Money {
     constructor(amount) {
         this.amount = amount;
     }
 
     times(val) {
-        return new Franc(this.amount*val)
+        return new Money(this.amount*val)
     }
 
-    equales(obj) {
+    equals(obj) {
         return obj.amount === this.amount
     }
 }
 
-module.exports = Franc
+module.exports = Money
