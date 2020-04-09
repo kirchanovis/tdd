@@ -25,13 +25,13 @@ describe('Dollar:', () => {
         expect(momey.dollar(5).equals(momey.dollar(6))).toBeFalsy()
     })
 
-    /*test('test simple addition', () => {
+    test('test simple addition', () => {
         const five = momey.dollar(5),
             sum = five.plus(five),
             reduce = bank.reduce(sum, 'USD')
 
         expect(reduce).toEqual(momey.dollar(10))
-    })*/
+    })
 
     test('test reduce sum', () => {
         const sum = new Sum(momey.dollar(3), momey.dollar(4)),
@@ -44,6 +44,13 @@ describe('Dollar:', () => {
         const reduce = bank.reduce(momey.dollar(1), 'USD')
 
         expect(reduce).toEqual(momey.dollar(1))
+    })
+
+    test('test reduce different currency', () => {
+        const add = bank.addRate('CHF','USD', 2)
+            result = bank.reduce(momey.franc(2), 'USD')
+
+        expect(result).toEqual(momey.dollar(1))
     })
 
 })

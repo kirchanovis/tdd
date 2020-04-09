@@ -1,5 +1,3 @@
-const Money = require('./money')
-
 class Sum {
     constructor(augend, addend) {
         this.augend = augend,
