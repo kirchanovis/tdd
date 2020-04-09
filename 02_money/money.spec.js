@@ -24,7 +24,11 @@ describe('Dollar:', () => {
     })
 
     test('test simple addition', () => {
-        expect(factory.dollar(5).plus(factory.dollar(5))).toEqual(factory.dollar(10))
+        const five = factory.dollar(5),
+            sum = five.plus(five),
+            reduce = bank.reduce(sum, 'USD')
+
+        expect(reduce).toEqual(factory.dollar(10))
     })
 
 })

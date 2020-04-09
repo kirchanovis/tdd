@@ -41,10 +41,4 @@ class Franc extends Money {
     }
 }
 
-class Bank extends Money {
-    constructor(amount) {
-        super(amount, 'CHF');
-    }
-}
-
 module.exports = Money
