@@ -4,6 +4,10 @@ class Money {
         this.currency = currency
     }
 
+    plus(val) {
+        return new Money(val.amount + this.amount, this.currency)
+    }
+
     dollar(val) {
         return new Dollar(val)
     }
@@ -32,6 +36,12 @@ class Dollar extends Money {
 }
 
 class Franc extends Money {
+    constructor(amount) {
+        super(amount, 'CHF');
+    }
+}
+
+class Bank extends Money {
     constructor(amount) {
         super(amount, 'CHF');
     }

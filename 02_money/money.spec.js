@@ -1,14 +1,15 @@
 const Money = require('./money')
+const Bank = require('./bank')
 
 describe('Dollar:', () => {
 
-    let factory
+    let factory, bank
     beforeEach(() => {
         factory = new Money()
+        bank = new Bank()
     })
 
     test('test multiptlication', () => {
-        const factory = new Money()
         const five = factory.dollar(5);
         let product = five.times(2);
 
@@ -18,9 +19,12 @@ describe('Dollar:', () => {
     })
 
     test('test equality', () => {
-        const factory = new Money()
         expect(factory.dollar(5).equals(factory.dollar(5))).toBeTruthy()
         expect(factory.dollar(5).equals(factory.dollar(6))).toBeFalsy()
+    })
+
+    test('test simple addition', () => {
+        expect(factory.dollar(5).plus(factory.dollar(5))).toEqual(factory.dollar(10))
     })
 
 })
@@ -33,7 +37,6 @@ describe('Franc:', () => {
     })
 
     test('test multiptlication', () => {
-        const factory = new Money()
         const five = factory.franc(5);
         let product = five.times(2);
 
