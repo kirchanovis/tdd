@@ -1,5 +1,3 @@
-const Dollar = require('./dollar')
-
 class Money {
     constructor(amount, currency) {
         this.amount = amount;
