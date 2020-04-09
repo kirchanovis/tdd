@@ -1,10 +1,15 @@
-const Dollar = require('./dollar')
-const Franc = require('./franc')
+const Money = require('./money')
 
 describe('Dollar:', () => {
 
+    let factory
+    beforeEach(() => {
+        factory = new Money()
+    })
+
     test('test multiptlication', () => {
-        const five = new Dollar(5);
+        const factory = new Money()
+        const five = factory.dollar(5);
         let product = five.times(2);
 
         expect(product.amount).toEqual(10)
@@ -13,16 +18,23 @@ describe('Dollar:', () => {
     })
 
     test('test equality', () => {
-        expect(new Dollar(5).equals(new Dollar(5))).toBeTruthy()
-        expect(new Dollar(5).equals(new Dollar(6))).toBeFalsy()
+        const factory = new Money()
+        expect(factory.dollar(5).equals(factory.dollar(5))).toBeTruthy()
+        expect(factory.dollar(5).equals(factory.dollar(6))).toBeFalsy()
     })
 
 })
 
 describe('Franc:', () => {
 
+    let factory
+    beforeEach(() => {
+        factory = new Money()
+    })
+
     test('test multiptlication', () => {
-        const five = new Franc(5);
+        const factory = new Money()
+        const five = factory.franc(5);
         let product = five.times(2);
 
         expect(product.amount).toEqual(10)
@@ -31,9 +43,10 @@ describe('Franc:', () => {
     })
 
     test('test equality', () => {
-        expect(new Franc(5).equals(new Franc(5))).toBeTruthy()
-        expect(new Franc(5).equals(new Franc(6))).toBeFalsy()
-        expect(new Franc(5).equals(new Dollar(5))).toBeFalsy()
+        expect(factory.franc(5).equals(factory.franc(5))).toBeTruthy()
+        expect(factory.franc(5).equals(factory.franc(6))).toBeFalsy()
+
+        expect(factory.franc(5).equals(factory.dollar(5))).toBeFalsy()
     })
 
 })
