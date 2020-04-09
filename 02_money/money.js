@@ -7,7 +7,7 @@ class Money {
     }
 
     plus(addend) {
-        return new Sum(this ,addend)
+        return new Sum(this.reduce(this), this.reduce(addend))
     }
 
     reduce(sum, to) {

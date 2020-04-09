@@ -4,15 +4,15 @@ const Sum = require('./sum')
 
 describe('Dollar:', () => {
 
-    let momey, bank, sum
+    let money, bank, sm
     beforeEach(() => {
-        momey = new Money()
+        money = new Money()
         bank = new Bank()
         sm = new Sum()
     })
 
     test('test multiptlication', () => {
-        const five = momey.dollar(5);
+        const five = money.dollar(5);
         let product = five.times(2);
 
         expect(product.amount).toEqual(10)
@@ -21,36 +21,53 @@ describe('Dollar:', () => {
     })
 
     test('test equality', () => {
-        expect(momey.dollar(5).equals(momey.dollar(5))).toBeTruthy()
-        expect(momey.dollar(5).equals(momey.dollar(6))).toBeFalsy()
+        expect(money.dollar(5).equals(money.dollar(5))).toBeTruthy()
+        expect(money.dollar(5).equals(money.dollar(6))).toBeFalsy()
     })
 
     test('test simple addition', () => {
-        const five = momey.dollar(5),
+        const five = money.dollar(5),
             sum = five.plus(five),
             reduce = bank.reduce(sum, 'USD')
 
-        expect(reduce).toEqual(momey.dollar(10))
+        expect(reduce).toEqual(money.dollar(10))
     })
 
     test('test reduce sum', () => {
-        const sum = new Sum(momey.dollar(3), momey.dollar(4)),
+        const sum = new Sum(money.dollar(3), money.dollar(4)),
             reduce = bank.reduce(sum, 'USD')
 
-        expect(reduce).toEqual(momey.dollar(7))
+        expect(reduce).toEqual(money.dollar(7))
     })
 
     test('test reduce money', () => {
-        const reduce = bank.reduce(momey.dollar(1), 'USD')
+        const reduce = bank.reduce(money.dollar(1), 'USD')
 
-        expect(reduce).toEqual(momey.dollar(1))
+        expect(reduce).toEqual(money.dollar(1))
     })
 
     test('test reduce different currency', () => {
-        const add = bank.addRate('CHF','USD', 2),
-            result = bank.reduce(momey.franc(2), 'USD')
+        const result = bank.reduce(money.franc(2), 'USD')
 
-        expect(result).toEqual(momey.dollar(1))
+        expect(result).toEqual(money.dollar(1))
+    })
+
+    test('test mixed addition', () => {
+        const fiveDollar = money.dollar(5),
+            tenFranc = money.franc(10),
+            add = bank.addRate('CHF','USD', 2),
+            result = bank.reduce(fiveDollar.plus(tenFranc), 'USD')
+
+        expect(result).toEqual(money.dollar(10))
+    })
+
+    test('test mixed sum times', () => {
+        const fiveDollar = money.dollar(5),
+            tenFranc = money.franc(10),
+            sum = new Sum(fiveDollar, tenFranc).times(2),
+            result = bank.reduce(sum, 'USD')
+
+        expect(result).toEqual(money.dollar(20))
     })
 
 })
