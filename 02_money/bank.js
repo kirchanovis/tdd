@@ -7,6 +7,11 @@ class Bank {
     addRate() {
         return null
     }
+
+    rate(sum, to) {
+        return sum.currency === 'CHF' ? 2 : 1;
+    }
+
     reduce(sum, to) {
         return money.reduce(sum, to)
     }

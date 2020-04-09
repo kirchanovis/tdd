@@ -47,7 +47,7 @@ describe('Dollar:', () => {
     })
 
     test('test reduce different currency', () => {
-        const add = bank.addRate('CHF','USD', 2)
+        const add = bank.addRate('CHF','USD', 2),
             result = bank.reduce(momey.franc(2), 'USD')
 
         expect(result).toEqual(momey.dollar(1))
