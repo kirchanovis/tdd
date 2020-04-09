@@ -1,13 +1,16 @@
-const Money = require('./money'),
-    factory = new Money()
+const Money = require('./money')
 
 class Bank {
-    constructor() {
-        
-    }
+    constructor() {}
 
-    reduce() {
-        return factory.dollar(10)
+    reduce(sum, to) {
+        if (sum instanceof Money) {
+            return new Money(sum.amount, to)
+        } else {
+            const amount = sum.augend.amount + sum.addend.amount
+            return new Money(amount, to)
+        }
+
     }
 }
 

@@ -1,16 +1,18 @@
 const Money = require('./money')
 const Bank = require('./bank')
+const Sum = require('./sum')
 
 describe('Dollar:', () => {
 
-    let factory, bank
+    let momey, bank, sum
     beforeEach(() => {
-        factory = new Money()
+        momey = new Money()
         bank = new Bank()
+        sm = new Sum()
     })
 
     test('test multiptlication', () => {
-        const five = factory.dollar(5);
+        const five = momey.dollar(5);
         let product = five.times(2);
 
         expect(product.amount).toEqual(10)
@@ -19,16 +21,29 @@ describe('Dollar:', () => {
     })
 
     test('test equality', () => {
-        expect(factory.dollar(5).equals(factory.dollar(5))).toBeTruthy()
-        expect(factory.dollar(5).equals(factory.dollar(6))).toBeFalsy()
+        expect(momey.dollar(5).equals(momey.dollar(5))).toBeTruthy()
+        expect(momey.dollar(5).equals(momey.dollar(6))).toBeFalsy()
     })
 
-    test('test simple addition', () => {
-        const five = factory.dollar(5),
+    /*test('test simple addition', () => {
+        const five = momey.dollar(5),
             sum = five.plus(five),
             reduce = bank.reduce(sum, 'USD')
 
-        expect(reduce).toEqual(factory.dollar(10))
+        expect(reduce).toEqual(momey.dollar(10))
+    })*/
+
+    test('test reduce sum', () => {
+        const sum = new Sum(momey.dollar(3), momey.dollar(4)),
+            reduce = bank.reduce(sum, 'USD')
+
+        expect(reduce).toEqual(momey.dollar(7))
+    })
+
+    test('test reduce money', () => {
+        const reduce = bank.reduce(momey.dollar(1), 'USD')
+
+        expect(reduce).toEqual(momey.dollar(1))
     })
 
 })

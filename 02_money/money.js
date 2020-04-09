@@ -1,11 +1,13 @@
+const Sum = require('./sum')
+
 class Money {
     constructor(amount, currency) {
         this.amount = amount;
         this.currency = currency
     }
 
-    plus(val) {
-        return new Money(val.amount + this.amount, this.currency)
+    plus(addend) {
+        return new Sum(this ,addend)
     }
 
     dollar(val) {
